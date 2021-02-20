@@ -1,0 +1,49 @@
+@import '~antd/dist/antd.css';
+body{
+  background-color: #f4f5f5;
+}
+.app {
+
+}
+.app_top{
+  background-color: #333333;
+  height: 80px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  justify-content: center;
+  position: relative;
+}
+.app_sign{
+  font-size: 15px;
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+.app_content{
+  width: 60vw;
+  height: 500px;
+  background-color: #fff;
+  margin: 50px auto;
+  
+}
+.content_item{
+    border-bottom: 1px solid rgba(178,186,194,.15);
+    padding: 15px 20px;
+    cursor: pointer;
+}
+.item_title{
+  font-weight: bold;
+  font-size: 25px;
+}
+.item_font{
+  font-size: 15px;
+  color: #333;
+  margin-top: 10px;
+}
+.modal_input{
+  margin-top: 20px;
+}
