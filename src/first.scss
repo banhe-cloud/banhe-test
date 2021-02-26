@@ -1,0 +1,31 @@
+.app_content {
+    width: 60vw;
+    min-height: 600px;
+    background-color: #fff;
+    margin: 50px auto;
+    display: flex;
+}
+.content_left {
+    width: 150px;   
+    border: 1px solid #ccc;
+    height: 100%;
+    flex-shrink: 0;
+}
+.left_item {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+.content_right{
+    overflow: auto;
+    .content_item {
+        border-bottom: 1px solid rgba(178, 186, 194, 0.15);
+        padding: 15px 20px;
+        cursor: pointer;
+        display: block;
+    }
+}
+

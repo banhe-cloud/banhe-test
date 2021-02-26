@@ -5,25 +5,36 @@ import App from './App';
 import Edit from './edit'
 import First from './first'
 import Add from './add'
-
+import Detail from './detail'
 import {
   HashRouter as Router,
   Route,
+  Switch,
   Link,
-  IndexRoute
+  IndexRoute,
+  withRouter
 } from 'react-router-dom';
 
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App/>
+  <div>
+
     <Router>
-        <Route path='/' component={First}></Route>
+      <App />
+      <Switch>
+        <Route path='/detail' component={Detail}></Route>
         <Route path='/edit' component={Edit}></Route>
         <Route path='/add' component={Add}></Route>
+        <Route path='/*' component={First}></Route>
+      </Switch>
     </Router>
-  </React.StrictMode>,
+  </div>
+  ,
   document.getElementById('root')
 );
+
+
+
+console.log("banben", React.version)
 

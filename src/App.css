@@ -1,11 +1,28 @@
-@import '~antd/dist/antd.css';
-body{
+@import "~antd/dist/antd.css";
+
+@font-face {
+  font-family: "iconfont"; /* project id 2381448 */
+  src: url("//at.alicdn.com/t/font_2381448_dr3pd0hjsc9.eot");
+  src: url("//at.alicdn.com/t/font_2381448_dr3pd0hjsc9.eot?#iefix") format("embedded-opentype"),
+    url("//at.alicdn.com/t/font_2381448_dr3pd0hjsc9.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_2381448_dr3pd0hjsc9.woff") format("woff"),
+    url("//at.alicdn.com/t/font_2381448_dr3pd0hjsc9.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_2381448_dr3pd0hjsc9.svg#iconfont") format("svg");
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+}
+
+body {
   background-color: #f4f5f5;
+  /* background-image: url('./bg.gif'); */
 }
 .app {
-
 }
-.app_top{
+.app_top {
   background-color: #333333;
   height: 80px;
   color: #ffffff;
@@ -15,35 +32,24 @@ body{
   justify-content: center;
   position: relative;
 }
-.app_sign{
+.app_sign {
   font-size: 15px;
   position: absolute;
   right: 30px;
   cursor: pointer;
   top: 50%;
-  transform: translate(0,-50%);
+  transform: translate(0, -50%);
 }
-.app_content{
-  width: 60vw;
-  height: 500px;
-  background-color: #fff;
-  margin: 50px auto;
-  
-}
-.content_item{
-    border-bottom: 1px solid rgba(178,186,194,.15);
-    padding: 15px 20px;
-    cursor: pointer;
-}
-.item_title{
+
+.item_title {
   font-weight: bold;
   font-size: 25px;
 }
-.item_font{
+.item_font {
   font-size: 15px;
   color: #333;
   margin-top: 10px;
 }
-.modal_input{
+.modal_input {
   margin-top: 20px;
 }

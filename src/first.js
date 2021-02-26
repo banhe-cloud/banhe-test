@@ -1,33 +1,57 @@
-import './App.css';
-import { Modal,Input } from 'antd';
-import React, { useState } from 'react';
-let arr = [
-  {title:"react性能优化"}
-]
-function First() {
-  const [visible,setVisible] = useState(false)
-  function handleOk(params) {
-    
-  }
-  function handleCancel(params) {
+import './first.scss';
+import { Modal, Input } from 'antd';
+import React, { useEffect, useState,useRef } from 'react';
+import { getCatetory, getArticle } from './utils'
+import {
+    NavLink,
+    withRouter
+} from "react-router-dom"
+let id = {
+    a:789
+}
+function First(props) {
+    const [catetory, setCatetory] = useState([]);
+    const [article, setArticle] = useState([]);
+    useEffect(() => {
+        getCatetory().then((res) => {
+            setCatetory(res.data.data)
+        });
+        getArticle().then((res) => {
+            setArticle(res.data.data)
+        })
+    }, [])
 
-  }
-  return (
-    <div className="app">
-      <div className="app_content">
-          {
-            arr.map(item=>{
-              return (
-                <div className="content_item">
-                    <div className="item_title">{item.title}</div>
-                    <div className="item_font">鄂温克父亲节阿迪索科洛夫好但是看见啊回复看见的撒回复可怜的撒就好疯狂激烈的撒哈立刻就打生活费看了几撒电话疯狂的几撒回复看到了撒就好放大看手机啊哈看见了的撒哈</div>
+    function  toDetail(item) {
+        props.history.push({pathname:"/detail",state:{data:item}})
+    }
+    return (
+        <div className="app">
+            <div className="app_content">
+                <div className="content_left">
+                    {
+                        catetory.map(item => {
+                            return (
+                                <div className="left_item">{item.name}</div>    
+                            )
+                        })
+                    }
                 </div>
-              )
-            })
-          }
-      </div>
-    </div>
-  );
+                <div className="content_right">
+                    {     
+                        article.map(item => {
+                            return (
+                                <div className="content_item" to="/detail/:id" onClick={()=>{toDetail(item)}}>
+                                    <div className="item_title">{item.title}</div>
+                                    <div className="item_font" >{item.content.replace(/<[^>]+>/g, "").substring(0,80)}</div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+            </div>
+        </div>
+    );
 }
 
-export default First;
+export default withRouter(First)
