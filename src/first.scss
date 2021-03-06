@@ -1,7 +1,6 @@
 .app_content {
     width: 60vw;
     min-height: 600px;
-    background-color: #fff;
     margin: 50px auto;
     display: flex;
 }
@@ -12,7 +11,7 @@
     flex-shrink: 0;
 }
 .left_item {
-    height: 50px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,11 +20,22 @@
 }
 .content_right{
     overflow: auto;
+    width: calc(60vw - 150px);
+    min-height: 400px;
+    background-color: #fff;
     .content_item {
         border-bottom: 1px solid rgba(178, 186, 194, 0.15);
         padding: 15px 20px;
         cursor: pointer;
         display: block;
     }
+}
+.selected{
+    background-color: rgb(68, 157, 187);
+    color: #fff;
+}
+.item_time{
+    margin-top: 5px;
+    color: #969696;
 }
 

@@ -1,9 +1,8 @@
 import './App.css';
 import { Modal, Input } from 'antd';
 import React, { useState, useRef } from 'react';
-import { sign } from "./utils"
+import { sign } from "./utils/utils.js"
 import { message, Button, Space } from 'antd';
-import { createHashHistory } from 'history'
 import {
   NavLink,
   withRouter

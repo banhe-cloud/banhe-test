@@ -5,7 +5,11 @@ import Simditor from 'simditor';
 import 'simditor/styles/simditor.scss';
 import { Menu, Dropdown, Button, message } from 'antd';
 import arrDiff from "arr-diff";
-import { getCatetory, getArticle,addArticle } from './utils'
+import { getCatetory, getArticle, addArticle, article_detail, updateArticle } from './utils/utils'
+import {
+    NavLink,
+    withRouter
+} from "react-router-dom"
 class Add extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +20,12 @@ class Add extends React.Component {
     }
 
     componentDidMount() {
-        this.richEditor();
+        let element = this.editor;
+        let editor = new Simditor({
+            textarea: element,
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'indent', 'outdent', 'alignment', 'hr']
+
+        });
         getCatetory().then((res) => {
             this.setState({
                 catetoryList: res.data.data,
@@ -25,34 +34,46 @@ class Add extends React.Component {
         }).catch((e) => {
             message.error("获取分类失败" + e)
         });
-
-
-    }
-
-    richEditor() {
-        let element = this.editor;
-        let editor = new Simditor({
-            textarea: element,
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'indent', 'outdent', 'alignment', 'hr']
-
-        });
-    }
-    release = () => {
-        let a =this.editor;
-        let params = {
-            title:this.title.value,
-            content:this.editor.value,
-            catetory_id:this.state.catetoryCurrent.id,
-            catetory:this.state.catetoryCurrent.name
+        if (localStorage.getItem("isEdit")) {
+            let id = localStorage.getItem("id")
+            article_detail({ id }).then((res) => {
+                this.title.value = res.data.data.title;
+                editor.setValue(res.data.data.content)
+            })
         }
-        addArticle(params).then((res)=>{
-            if(res.data.code){
-                message.success("发布成功")
-            }
-        }).catch((e)=>{
-            message.error("发布失败")
-        })
+    }
 
+    release = () => {
+        let a = this.editor;
+        let params = {
+            title: this.title.value,
+            content: this.editor.value,
+            catetory_id: this.state.catetoryCurrent.id,
+            catetory: this.state.catetoryCurrent.name
+        }
+        //编辑文章
+        if (localStorage.getItem("isEdit")) {
+            params.id = localStorage.getItem("id");
+            updateArticle(params).then((res) => {
+                if (res.data.code) {
+                    message.success("更新成功");
+                    this.props.history.push({ pathname: "/edit" })
+                }
+            }).catch((e) => {
+                message.error("更新失败" + e)
+            })
+
+        } else {
+            //新增文章
+            addArticle(params).then((res) => {
+                if (res.data.code) {
+                    message.success("发布成功");
+                    this.props.history.push({ pathname: "/edit" })
+                }
+            }).catch((e) => {
+                message.error("发布失败")
+            })
+        }
 
     }
 
@@ -81,7 +102,7 @@ class Add extends React.Component {
                     </Dropdown>
                     <Button onClick={this.release}>发布</Button>
                 </div>
-                <input ref ={(title)=>{this.title = title}} className="add_title" placeholder="标题" />
+                <input ref={(title) => { this.title = title }} className="add_title" placeholder="标题" />
                 <textarea ref={(d) => { this.editor = d }} placeholder="在此输入内容"></textarea>
             </div>
         )
@@ -119,4 +140,4 @@ class Add extends React.Component {
 //         </div>
 //     )
 // }
-export default Add
+export default withRouter(Add)
