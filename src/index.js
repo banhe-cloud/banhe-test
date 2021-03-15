@@ -15,8 +15,6 @@ import {
   withRouter
 } from 'react-router-dom';
 
-
-
 ReactDOM.render(
   <div>
 

@@ -33,7 +33,8 @@ function Edit(props) {
     //获取分类列表
     function _getCatetory(params) {
         getCatetory().then((res) => {
-            setCatetory(res.data.data)
+            setCatetory(res.data.data);
+            res.data.data.length&&setCatetoryData(res.data.data[0]);
         });
     }
     function _deleteArticle(item) {
@@ -85,6 +86,7 @@ function Edit(props) {
     }
     //跳转编辑
     function toAdd(item,type){
+        if(!catetory.length) return message.success("请先添加一个分类")
         localStorage.setItem("isEdit",type);
         item&&localStorage.setItem("id",item.id);
         props.history.push({ pathname: "/add" })

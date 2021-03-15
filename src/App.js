@@ -40,7 +40,7 @@ function App(props) {
     <div className="app">
       <div className="app_top">
 
-        <NavLink to="/">西兰花的博客</NavLink>
+        <NavLink to="/">西兰花</NavLink>
         {
           !localStorage.getItem('is_login') ?
             <div className="app_sign" onClick={() => { setVisible(true) }}>登录</div>
