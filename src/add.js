@@ -47,10 +47,15 @@ class Add extends React.Component {
     if (localStorage.getItem("isEdit")) {
       let id = localStorage.getItem("id");
       article_detail({ id }).then((res) => {
-        this.title.value = res.data.data.title;
+        let data =res.data.data
+        this.title.value = data.title;
         this.setState({
-          content_markDown: res.data.data.content_markDown,
-          content: res.data.data.content,
+          content_markDown: data.content_markDown,
+          content: data.content,
+          catetoryCurrent:{
+            id:data.catetory_id,
+            name:data.catetory
+          }
         });
       });
     }
@@ -93,18 +98,6 @@ class Add extends React.Component {
         });
     }
   };
-  getBase64Image = (img) => {
-    debugger;
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0, img.width, img.height);
-    var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
-    var dataURL = canvas.toDataURL("image/" + ext);
-    return dataURL;
-  };
-
   render() {
     let { catetoryList, catetoryCurrent } = this.state;
     return (
@@ -149,9 +142,7 @@ class Add extends React.Component {
             new Promise((resolve) => {
               let fm = new FormData();
               fm.append('file',e)
-              
-              upload(fm).then((res)=>{
-                
+              upload(fm).then((res)=>{  
                 resolve(res.data.data)
               })
             })

@@ -1,7 +1,7 @@
 const axios = require("axios");
 axios.defaults.withCredentials = true;
 
-
+axios.defaults.baseURL="http://115.29.194.147:8000";
 
 //oss上传文件
 export function upload(params) {

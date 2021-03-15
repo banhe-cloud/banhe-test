@@ -1,5 +1,5 @@
 .detail{
-    width: 60vw;
+    width: 1000px;
     min-height: 600px;
     background-color: #fff;
     margin: 50px auto;
@@ -13,6 +13,9 @@
         margin-top: 150px;
     }
     .detail_content{
-        padding: 0 20px;
+        padding: 30px 20px;
+    }
+    img{
+        width: 100%;
     }
 }

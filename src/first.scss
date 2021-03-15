@@ -1,9 +1,10 @@
 .app{
     .app_content {
-        width: 60vw;
+        width: 900px;
         min-height: 600px;
         margin: 50px auto;
         display: flex;
+        justify-content: center;
         .content_left {
             width: 150px;   
             border: 1px solid #ccc;
@@ -20,7 +21,7 @@
         }
         .content_right{
             overflow: auto;
-            width: calc(60vw - 150px);
+            width: 750px;
             min-height: 400px;
             background-color: #fff;
             .content_item {
@@ -28,6 +29,13 @@
                 padding: 15px 20px;
                 cursor: pointer;
                 display: block;
+            }
+            .content_top{
+                display: flex;
+                justify-content: space-between;
+                .item_catetory{
+                    color: #ccc;
+                }
             }
         }
     }

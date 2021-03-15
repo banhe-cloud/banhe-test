@@ -24,17 +24,21 @@ function Edit(props) {
     const nameRef = useRef();
 
     useEffect(() => {
-        _getCatetory()
-        getArticle().then((res) => {
-            setArticle(res.data.data)
-        })
-    }, []);
-
-    //获取分类列表
-    function _getCatetory(params) {
         getCatetory().then((res) => {
             setCatetory(res.data.data);
             res.data.data.length&&setCatetoryData(res.data.data[0]);
+            queryArticle(res.data.data[0])
+        });
+
+
+    }, []);
+
+    //获取分类列表
+    function _getCatetory(type) {
+        getCatetory().then((res) => {
+            let data = res.data.data
+            setCatetory(data);
+            queryArticle(type==='add'?data[data.length-1]:data[0])
         });
     }
     function _deleteArticle(item) {
@@ -55,7 +59,7 @@ function Edit(props) {
         addCatetory({ name: nameRef.current.state.value }).then((res) => {
             if (res.data.code) {
                 setVisible(false);
-                _getCatetory()
+                _getCatetory('add')
                 message.success("添加分类成功");
 
             } else {
@@ -71,7 +75,7 @@ function Edit(props) {
             if (res.data.code) {
                 message.success("删除分类成功");
                 setVisible2(false);
-                _getCatetory()
+                _getCatetory('reduce')
             } else if (!res.data.code) {
                 message.error(res.data.message)
             }

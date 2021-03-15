@@ -43,7 +43,7 @@ function App(props) {
         <NavLink to="/">西兰花</NavLink>
         {
           !localStorage.getItem('is_login') ?
-            <div className="app_sign" onClick={() => { setVisible(true) }}>登录</div>
+            <div style={{color:"#333333"}} className="app_sign" onClick={() => { setVisible(true) }}>登录</div>
             :
             <NavLink className="app_sign" to="/edit">编辑</NavLink>
         }

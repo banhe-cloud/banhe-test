@@ -50,7 +50,11 @@ function First(props) {
                             article.map(item => {
                                 return (
                                     <div className="content_item" onClick={() => { toDetail(item) }}>
-                                        <div className="item_title">{item.title}</div>
+                                        <div className="content_top">
+                                            <div className="item_title">{item.title}</div>
+                                            <div className="item_catetory">{item.catetory}</div>
+                                        </div>
+                                        
                                         <div className="item_font" >{item.content.replace(/<[^>]+>/g, "").substring(0, 60)}</div>
                                         <div className="item_time">{item.create_time.substring(0, 10)}</div>
                                     </div>
